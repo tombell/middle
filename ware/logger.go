@@ -21,3 +21,10 @@ func Logger(logger *slog.Logger) func(http.Handler) http.Handler {
 		})
 	}
 }
+
+// LoggerFromContext returns the slog.Logger from the request context if it
+// exists, else it returns nil.
+func LoggerFromContext(r *http.Request) *slog.Logger {
+	logger, _ := r.Context().Value(LoggerContextKey).(*slog.Logger)
+	return logger
+}
