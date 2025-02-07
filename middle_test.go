@@ -18,14 +18,14 @@ func TestMiddleUse(t *testing.T) {
 
 	mw1 := func(next http.Handler) http.Handler {
 		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-			result += "one"
+			result += "one "
 			next.ServeHTTP(w, r)
 		})
 	}
 
 	mw2 := func(next http.Handler) http.Handler {
 		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-			result += "two"
+			result += "two "
 			next.ServeHTTP(w, r)
 		})
 	}
@@ -34,5 +34,5 @@ func TestMiddleUse(t *testing.T) {
 	fn(handle).ServeHTTP(nil, nil)
 
 	is := is.New(t)
-	is.Equal("twoonehandler", result) // expect to be the same
+	is.Equal("one two handler", result) // expect to be the same
 }
