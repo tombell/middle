@@ -26,8 +26,8 @@ func TestRequestLogging(t *testing.T) {
 	})
 
 	fn := middle.Use(
-		ware.RequestLogging(),
 		ware.Logger(logger),
+		ware.RequestLogging(),
 	)(handler)
 
 	req := httptest.NewRequest("GET", "https://example.com/", nil)

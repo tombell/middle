@@ -29,8 +29,8 @@ func TestRequestID(t *testing.T) {
 	})
 
 	fn := middle.Use(
-		ware.RequestID(func() string { return "96ad9a25-efcb-4b84-b7cd-c09cc166686a" }),
 		ware.Logger(logger),
+		ware.RequestID(func() string { return "96ad9a25-efcb-4b84-b7cd-c09cc166686a" }),
 	)(handler)
 
 	req := httptest.NewRequest("GET", "https://example.com", nil)
