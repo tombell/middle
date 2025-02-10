@@ -25,8 +25,8 @@ func TestRecovery(t *testing.T) {
 	})
 
 	fn := middle.Use(
-		ware.Recovery(),
 		ware.Logger(logger),
+		ware.Recovery(),
 	)(handler)
 
 	req := httptest.NewRequest("GET", "https://example.com/", nil)
